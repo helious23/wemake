@@ -1,0 +1,108 @@
+나는 한국어 사용자야. 모든 대답은 절대로 한국어로 해야해.
+아래 내용은 영어로 작성한 규칙이야. 아래 규칙을 절대적으로 따라야 해.
+
+Remix React Router TypeScript Supabase
+You are an expert in TypeScript, Node.js, React Router, React, Remix, Shadcn UI, Radix UI, Tailwind and Supabase.
+
+Key Principles
+
+- Write concise, technical TypeScript code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content, types.
+
+Naming Conventions
+
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components.
+
+TypeScript Usage
+
+- Use TypeScript for all code; prefer interfaces over types.
+- Avoid enums; use maps instead.
+- Use functional components with TypeScript interfaces.
+
+Syntax and Formatting
+
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+
+UI and Styling
+
+- Use Shadcn UI, Radix, and Tailwind for components and styling.
+
+Key Conventions
+
+- Don't import anything from Radix UI. Always import UI componentsfrom Shadcn UI.
+- Don't import anything from Remix. Any @remix-run import should be imported from "react-router".
+- When creating a new page always export a loader, action, and meta function.
+- Route types should be imported like this: `import type { Route } from "./+types/...";`
+- `useLoaderData` does not exist anymore. Instead, components receive Router.ComponentProps type param that contains loaderData.
+- `useActionData` does not exist anymore. Instead, components receive Router.ComponentProps type param that contains actionData.
+- Never use `useLoaderData` or `useActionData` in page components.
+- `loader` function takes a Route.LoaderArgs type param.
+- `action` function takes a Route.ActionArgs type param.
+- `meta` function takes a Route.MetaFunction type param.
+- `meta` returns MetaFunction type.
+- `json` does not exists anymore. Return plain objects i.e
+- Use `data` when returning a response with a status code, otherwise return plain objects.
+
+여기부터는 위 내용을 한글로 번역한 내용이야. 내용은 동일하고 마찬가지로 절대적으로 이 규칙들을 따라야 해.
+
+Remix React Router TypeScript Supabase
+당신은 TypeScript, Node.js, React Router, React, Remix, Shadcn UI, Radix UI, Tailwind 및 Supabase 전문가입니다.
+
+⸻
+
+핵심 원칙
+• 정확한 예제와 함께 간결하고 기술적인 TypeScript 코드를 작성하세요.
+• 클래스는 피하고 함수형 및 선언형 프로그래밍 패턴을 사용하세요.
+• 코드 중복보다는 반복과 모듈화를 선호하세요.
+• 보조 동사를 포함한 설명적인 변수 이름을 사용하세요 (예: isLoading, hasError).
+• 파일 구조는 다음과 같이 하세요: export된 컴포넌트, 하위 컴포넌트, 헬퍼 함수, 정적 콘텐츠, 타입 정의.
+
+⸻
+
+네이밍 규칙
+• 디렉토리는 소문자와 대시를 사용하세요 (예: components/auth-wizard).
+• 컴포넌트는 가능하면 named exports를 선호하세요.
+
+⸻
+
+TypeScript 사용
+• 모든 코드는 TypeScript로 작성하세요; types보다는 interfaces를 선호하세요.
+• enum은 피하고 maps를 대신 사용하세요.
+• TypeScript 인터페이스와 함께 함수형 컴포넌트를 사용하세요.
+
+⸻
+
+문법 및 포매팅
+• 순수 함수에는 “function” 키워드를 사용하세요.
+• 조건문에서 불필요한 중괄호는 피하고, 간단한 문장에는 간결한 문법을 사용하세요.
+• 선언적인 JSX를 사용하세요.
+
+⸻
+
+UI 및 스타일링
+• UI 컴포넌트와 스타일링에는 Shadcn UI, Radix, Tailwind를 사용하세요.
+
+⸻
+
+주요 규칙
+• Radix UI에서 아무것도 import하지 마세요. 항상 Shadcn UI에서 UI 컴포넌트를 import하세요.
+• Remix에서 아무것도 import하지 마세요. 모든 @remix-run import는 “react-router”에서 import하세요.
+• 새 페이지를 만들 때는 항상 loader, action, meta 함수를 export하세요.
+• Route 타입은 다음과 같이 import하세요:
+import type { Route } from "./+types/...";
+• 페이지 컴포넌트에서는 `useLoaderData`를 더 이상 사용하지 않습니다. 대신 컴포넌트는 `Router.ComponentProps` 타입 파라미터를 통해 loaderData를 받습니다.
+• 페이지 컴포넌트에서는 `useActionData`도 더 이상 사용하지 않습니다. 대신 컴포넌트는 `Router.ComponentProps` 타입 파라미터를 통해 actionData를 받습니다.
+• 페이지 컴포넌트에서는 `useLoaderData`나 `useActionData`를 절대 사용하지 마세요.
+• loader 함수는 `Route.LoaderArgs` 타입 파라미터를 받습니다.
+• action 함수는 `Route.ActionArgs` 타입 파라미터를 받습니다.
+• meta 함수는 `Route.MetaFunction` 타입 파라미터를 받습니다.
+• meta는 `MetaFunction` 타입을 반환합니다.
+• json은 더 이상 존재하지 않습니다. 대신 평범한 객체를 반환하세요. 예: `export function loader({ request }: Route.LoaderArgs) { return { } }`
+• 상태 코드를 포함한 응답을 반환할 때는 data를 사용하세요. 그렇지 않으면 평범한 객체를 반환하세요.
+• Import 할 때에는 `~/` 를 먼저 사용하세요. 해당 코드는 tsconfig.json 파일에서 볼 수 있듯이 `"~/*": ["./app/*"]` 을 의미합니다.
