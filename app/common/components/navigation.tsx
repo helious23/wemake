@@ -18,27 +18,27 @@ const menus = [
     items: [
       {
         name: "Leaderboards",
-        description: "See the top performers in your community",
+        description: "커뮤니티의 최고 실력자들을 확인해보세요",
         to: "/products/leaderboards",
       },
       {
         name: "Categories",
-        description: "Create and manage categories for your products",
+        description: "제품을 위한 카테고리를 생성하고 관리하세요",
         to: "/products/categories",
       },
       {
         name: "Search",
-        description: "Search for products in your community",
+        description: "커뮤니티의 제품을 검색해보세요",
         to: "/products/search",
       },
       {
         name: "Submit",
-        description: "Submit a new product to the community",
+        description: "커뮤니티에 새로운 제품을 등록하세요",
         to: "/products/submit",
       },
       {
         name: "Promote",
-        description: "Promote your product to the community",
+        description: "커뮤니티에 당신의 제품을 홍보하세요",
         to: "/products/promote",
       },
     ],
@@ -49,27 +49,27 @@ const menus = [
     items: [
       {
         name: "RemoteJobs",
-        description: "Find remote jobs in your community",
+        description: "커뮤니티의 원격 근무 일자리를 찾아보세요",
         to: "/jobs?location=remote",
       },
       {
         name: "Full-Time Jobs    ",
-        description: "Find full-time jobs in your community",
+        description: "커뮤니티의 정규직 일자리를 찾아보세요",
         to: "/jobs?type=full-time",
       },
       {
         name: "Freelance Jobs",
-        description: "Find freelance jobs in your community",
+        description: "커뮤니티의 프리랜서 일자리를 찾아보세요",
         to: "/jobs?type=freelance",
       },
       {
         name: "Internships",
-        description: "Find internships in your community",
+        description: "커뮤니티의 인턴십 기회를 찾아보세요",
         to: "/jobs?type=internship",
       },
       {
         name: "Submit a Job",
-        description: "Submit a new job to the community",
+        description: "커뮤니티에 새로운 채용 공고를 등록하세요",
         to: "/jobs/submit",
       },
     ],
@@ -81,22 +81,22 @@ const menus = [
     items: [
       {
         name: "All Posts",
-        description: "See all posts in the community",
+        description: "커뮤니티의 모든 게시물을 확인하세요",
         to: "/community",
       },
       {
         name: "Top Posts",
-        description: "See the top posts in the community",
+        description: "커뮤니티의 인기 게시물을 확인하세요",
         to: "/community?sort=top",
       },
       {
         name: "New Posts",
-        description: "See the new posts in the community",
+        description: "커뮤니티의 최신 게시물을 확인하세요",
         to: "/community?sort=new",
       },
       {
         name: "Create a Post",
-        description: "Create a new post in the community",
+        description: "커뮤니티에 새로운 게시물을 작성하세요",
         to: "/community/create",
       },
     ],
@@ -111,12 +111,12 @@ const menus = [
     items: [
       {
         name: "All Teams",
-        description: "See all teams in our community",
+        description: "우리 커뮤니티의 모든 팀을 확인하세요",
         to: "/teams",
       },
       {
         name: "Create a Team",
-        description: "Create a new team in our community",
+        description: "우리 커뮤니티에 새로운 팀을 만드세요",
         to: "/teams/create",
       },
     ],
