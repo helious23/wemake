@@ -10,6 +10,25 @@ import {
 } from "~/common/components/ui/navigation-menu";
 import { Separator } from "~/common/components/ui/separator";
 import { cn } from "~/lib/utils";
+import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+  BarChart3Icon,
+  BellIcon,
+  LogOutIcon,
+  MessageCircleIcon,
+  SettingsIcon,
+  UserIcon,
+} from "lucide-react";
 
 const menus = [
   {
@@ -122,7 +141,15 @@ const menus = [
     ],
   },
 ];
-export default function Navigation() {
+export default function Navigation({
+  isLoggedIn,
+  hasNotifications,
+  hasMessages,
+}: {
+  isLoggedIn: boolean;
+  hasNotifications: boolean;
+  hasMessages: boolean;
+}) {
   return (
     <nav className="flex px-20 h-16 items-center justify-between backdrop-blur fixed top-0 left-0 right-0 z-50 bg-background/50">
       <div className="flex items-center">
@@ -179,6 +206,77 @@ export default function Navigation() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
+      {isLoggedIn ? (
+        <div className="flex items-center gap-2">
+          <Button size="icon" variant="ghost" asChild className="relative">
+            <Link to="/my/notifications">
+              <BellIcon className="size-4" />
+              {hasNotifications && (
+                <div className="absolute top-1.5 right-1.5 bg-red-500 rounded-full w-1 h-1" />
+              )}
+            </Link>
+          </Button>
+          <Button size="icon" variant="ghost" asChild className="relative">
+            <Link to="/my/messages">
+              <MessageCircleIcon className="size-4" />
+              {hasMessages && (
+                <div className="absolute top-1.5 right-1.5 bg-red-500 rounded-full w-1 h-1" />
+              )}
+            </Link>
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar className="cursor-pointer">
+                <AvatarImage src="https://github.com/helious23.png" />
+                <AvatarFallback>N</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel className="flex flex-col">
+                <span className="font-medium">John Doe</span>
+                <span className="text-xs text-muted-foreground">@username</span>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem asChild className="cursor-pointer">
+                  <Link to="/my/dashboard">
+                    <BarChart3Icon className="size-4 mr-2 text-foreground" />
+                    Dashboard
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="cursor-pointer">
+                  <Link to="/my/profile">
+                    <UserIcon className="size-4 mr-2 text-foreground" />
+                    Profile
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="cursor-pointer">
+                  <Link to="/my/settings">
+                    <SettingsIcon className="size-4 mr-2 text-foreground" />
+                    Settings
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link to="/auth/logout">
+                  <LogOutIcon className="size-4 mr-2 text-foreground" />
+                  Logout
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      ) : (
+        <div className="flex items-center gap-4">
+          <Button asChild variant="outline">
+            <Link to="/auth/login">Login</Link>
+          </Button>
+          <Button asChild>
+            <Link to="/auth/join">Join</Link>
+          </Button>
+        </div>
+      )}
     </nav>
   );
 }
