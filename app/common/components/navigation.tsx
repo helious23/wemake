@@ -231,7 +231,7 @@ export default function Navigation({
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-56" align="end">
               <DropdownMenuLabel className="flex flex-col">
                 <span className="font-medium">John Doe</span>
                 <span className="text-xs text-muted-foreground">@username</span>
