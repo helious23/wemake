@@ -3,6 +3,7 @@ import { ProductCard } from "~/features/products/components/product-card";
 import { Button } from "../components/ui/button";
 import { PostCard } from "~/features/community/components/post-card";
 import { IdeaCard } from "~/features/ideas/components/idea-card";
+import { JobCard } from "~/features/jobs/components/job-card";
 
 export const meta: MetaFunction = () => {
   return [
@@ -76,13 +77,39 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 11 }).map((_, index) => (
           <IdeaCard
-          key={index}
-          id={`ideaId-${index}`}
-          title="A startup that creates an AI-powered generated personal trainer, delivering customized fitness recommendations and tracking of progress using a mobile app to track workouts and progress as well as a web app to track progress and analyze results."
-          viewCount={100}
-          likeCount={100}
+            key={index}
+            id={`ideaId-${index}`}
+            title="A startup that creates an AI-powered generated personal trainer, delivering customized fitness recommendations and tracking of progress using a mobile app to track workouts and progress as well as a web app to track progress and analyze results."
+            viewCount={100}
+            likeCount={100}
+            createdAt="12 hours ago"
+            claimed={index % 2 === 0}
+          />
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <h2 className="text-5xl font-bold leading-tight tracking-tight">
+            Latest Jobs
+          </h2>
+          <p className="text-xl font-light text-foreground">
+            Find your dream job.
+          </p>
+          <Button variant="link" asChild className="text-lg p-0">
+            <Link to="/jobs">Explore all jobs &rarr;</Link>
+          </Button>
+        </div>
+        {Array.from({ length: 11 }).map((_, index) => (
+          <JobCard
+          id={`jobId-${index}`}
+          title="Software Engineer"
+          company="Tesla"
+          companyLogoUrl = "https://github.com/teslamotors.png"
+          companyHq="Palo Alto, CA"
           createdAt="12 hours ago"
-          claimed={index % 2 === 0}
+          type="Full-time"
+          positionLocation="Remote"
+            salary="$100,000 - $120,000"
           />
         ))}
       </div>

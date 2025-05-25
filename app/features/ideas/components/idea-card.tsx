@@ -28,7 +28,7 @@ export function IdeaCard({
   claimed,
 }: IdeaCardProps) {
   return (
-    <Card className="bg-transparent hover:bg-primary/10 transition-colors">
+    <Card className="bg-transparent hover:bg-card/50 transition-colors">
       <CardHeader>
         <Link to={`/ideas/${id}`}>
           <CardTitle className={cn("text-sm ")}>

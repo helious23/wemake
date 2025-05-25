@@ -32,7 +32,7 @@ export function PostCard({
 }: PostCardProps) {
   return (
     <Link to={`/community/${id}`}>
-      <Card className="bg-transparent hover:bg-primary/10 transition-colors justify-between">
+      <Card className="bg-transparent hover:bg-card/50 transition-colors justify-between">
         <CardHeader className="flex flex-row items-center gap-2 px-2">
           <Avatar className="size-14">
             <AvatarFallback>{author[0]}</AvatarFallback>
