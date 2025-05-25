@@ -17,6 +17,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuShortcut,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
@@ -51,7 +52,7 @@ const menus = [
         to: "/products/search",
       },
       {
-        name: "Submit",
+        name: "Submit a Product",
         description: "커뮤니티에 새로운 제품을 등록하세요",
         to: "/products/submit",
       },
@@ -67,7 +68,7 @@ const menus = [
     to: "/jobs",
     items: [
       {
-        name: "RemoteJobs",
+        name: "Remote Jobs",
         description: "커뮤니티의 원격 근무 일자리를 찾아보세요",
         to: "/jobs?location=remote",
       },
@@ -180,7 +181,7 @@ export default function Navigation({
                           >
                             <NavigationMenuLink asChild>
                               <Link
-                                className="p-3  space-y-1 block leading-none no-underline outline-none"
+                                className="p-3 space-y-1 block leading-none no-underline outline-none"
                                 to={item.to}
                               >
                                 <span className="text-sm font-medium leading-none">
@@ -231,7 +232,7 @@ export default function Navigation({
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end">
+            <DropdownMenuContent className="w-56" align="end" side="bottom">
               <DropdownMenuLabel className="flex flex-col">
                 <span className="font-medium">John Doe</span>
                 <span className="text-xs text-muted-foreground">@username</span>
@@ -239,29 +240,51 @@ export default function Navigation({
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link to="/my/dashboard">
-                    <BarChart3Icon className="size-4 mr-2 text-foreground" />
-                    Dashboard
+                  <Link to="/my/dashboard" className="flex items-center w-full">
+                    <div className="flex items-center w-full">
+                      <BarChart3Icon className="size-4 mr-2 text-foreground" />
+                      Dashboard
+                      <DropdownMenuShortcut className="ml-auto">
+                        ⌘+D
+                      </DropdownMenuShortcut>
+                    </div>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link to="/my/profile">
-                    <UserIcon className="size-4 mr-2 text-foreground" />
-                    Profile
+                  <Link to="/my/profile" className="flex items-center w-full">
+                    <div className="flex items-center w-full">
+                      <UserIcon className="size-4 mr-2 text-foreground" />
+                      Profile
+                      <DropdownMenuShortcut className="ml-auto">
+                        ⌘+P
+                      </DropdownMenuShortcut>
+                    </div>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link to="/my/settings">
-                    <SettingsIcon className="size-4 mr-2 text-foreground" />
-                    Settings
+                  <Link to="/my/settings" className="flex items-center w-full">
+                    <div className="flex items-center w-full">
+                      <SettingsIcon className="size-4 mr-2 text-foreground" />
+                      Settings
+                      <DropdownMenuShortcut className="ml-auto">
+                        ⌘+S
+                      </DropdownMenuShortcut>
+                    </div>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild className="cursor-pointer">
-                <Link to="/auth/logout">
-                  <LogOutIcon className="size-4 mr-2 text-foreground" />
-                  Logout
+                <Link to="/auth/logout" className="flex items-center w-full">
+                  <div className="flex items-center w-full">
+                    <div className="flex items-center">
+                      <LogOutIcon className="size-4 mr-2 text-foreground" />
+                      Logout
+                    </div>
+                    <DropdownMenuShortcut className="ml-auto">
+                      ⌘+X
+                    </DropdownMenuShortcut>
+                  </div>
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -269,10 +292,10 @@ export default function Navigation({
         </div>
       ) : (
         <div className="flex items-center gap-4">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="w-20">
             <Link to="/auth/login">Login</Link>
           </Button>
-          <Button asChild>
+          <Button asChild className="w-20">
             <Link to="/auth/join">Join</Link>
           </Button>
         </div>
