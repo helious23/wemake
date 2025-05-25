@@ -11,6 +11,7 @@ import {
   AvatarImage,
 } from "~/common/components/ui/avatar";
 import { Button } from "~/common/components/ui/button";
+import { DotIcon } from "lucide-react";
 
 interface PostCardProps {
   id: string;
@@ -31,7 +32,7 @@ export function PostCard({
 }: PostCardProps) {
   return (
     <Link to={`/community/${id}`}>
-      <Card className="bg-transparent hover:bg-card/50 transition-colors justify-between">
+      <Card className="bg-transparent hover:bg-primary/10 transition-colors justify-between">
         <CardHeader className="flex flex-row items-center gap-2 px-2">
           <Avatar className="size-14">
             <AvatarFallback>{author[0]}</AvatarFallback>
@@ -42,15 +43,13 @@ export function PostCard({
             <div className="flex gap-1 text-xs leading-tight text-muted-foreground">
               <span>{author} on</span>
               <span>{category}</span>
-              <span>•</span>
+              <DotIcon className="w-4 h-4" />
               <span>{createdAt}</span>
             </div>
           </div>
         </CardHeader>
         <CardFooter className="flex justify-end px-2">
-          <Button variant="link" asChild>
-            <Link to={`/community/${id}`}>Reply &rarr;</Link>
-          </Button>
+          <Button variant="link">Reply &rarr;</Button>
         </CardFooter>
       </Card>
     </Link>

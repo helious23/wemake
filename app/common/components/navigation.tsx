@@ -142,6 +142,7 @@ const menus = [
     ],
   },
 ];
+
 export default function Navigation({
   isLoggedIn,
   hasNotifications,

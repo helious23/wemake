@@ -2,8 +2,7 @@ import { Link, type MetaFunction } from "react-router";
 import { ProductCard } from "~/features/products/components/product-card";
 import { Button } from "../components/ui/button";
 import { PostCard } from "~/features/community/components/post-card";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { DotIcon, EyeIcon } from "lucide-react";
+import { IdeaCard } from "~/features/ideas/components/idea-card";
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,7 +26,7 @@ export default function HomePage() {
             <Link to="/products/leaderboards">Explore all products &rarr;</Link>
           </Button>
         </div>
-          {Array.from({ length: 10 }).map((_, index) => (
+          {Array.from({ length: 11 }).map((_, index) => (
             <ProductCard
               key={index}
               id={`productId-${index}`}
@@ -51,7 +50,7 @@ export default function HomePage() {
             <Link to="/community">Explore all discussions &rarr;</Link>
           </Button>
         </div>
-        {Array.from({ length: 10 }).map((_, index) => (
+        {Array.from({ length: 13 }).map((_, index) => (
           <PostCard
             key={index}
             id={`postId-${index}`}
@@ -75,21 +74,17 @@ export default function HomePage() {
             <Link to="/ideas">Explore all ideas &rarr;</Link>
           </Button>
         </div>
-        <Card className="bg-transparent hover:bg-card/50 transition-colors">
-          <CardHeader>
-            <CardTitle className="text-xl">
-              A startup that creates an AI-powered generated personal trainer, delivering customized fitness recommendations and tracking of progress using a mobile app to track workouts and progress as well as a web app to track progress and analyze results.
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-2">
-              <EyeIcon className="w-4 h-4" />
-              <span>100</span>
-            </div>
-            <DotIcon className="w-4 h-4" />
-            <span>12 hours ago</span>
-          </CardContent>
-        </Card>
+        {Array.from({ length: 11 }).map((_, index) => (
+          <IdeaCard
+          key={index}
+          id={`ideaId-${index}`}
+          title="A startup that creates an AI-powered generated personal trainer, delivering customized fitness recommendations and tracking of progress using a mobile app to track workouts and progress as well as a web app to track progress and analyze results."
+          viewCount={100}
+          likeCount={100}
+          createdAt="12 hours ago"
+          claimed={index % 2 === 0}
+          />
+        ))}
       </div>
     </div>
   );
