@@ -4,6 +4,7 @@ import { Button } from "../components/ui/button";
 import { PostCard } from "~/features/community/components/post-card";
 import { IdeaCard } from "~/features/ideas/components/idea-card";
 import { JobCard } from "~/features/jobs/components/job-card";
+import { TeamCard } from "~/features/teams/components/team-card";
 
 export const meta: MetaFunction = () => {
   return [
@@ -101,15 +102,38 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 11 }).map((_, index) => (
           <JobCard
-          id={`jobId-${index}`}
-          title="Software Engineer"
-          company="Tesla"
-          companyLogoUrl = "https://github.com/teslamotors.png"
-          companyHq="Palo Alto, CA"
-          createdAt="12 hours ago"
-          type="Full-time"
-          positionLocation="Remote"
+            key={index}
+            id={`jobId-${index}`}
+            title="Software Engineer"
+            company="Meta"
+            companyLogoUrl="https://github.com/facebook.png"
+            companyHq="Palo Alto, CA"
+            createdAt="12 hours ago"
+            type="Full-time"
+            positionLocation="Remote"
             salary="$100,000 - $120,000"
+          />
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <h2 className="text-5xl font-bold leading-tight tracking-tight">
+            Find a team mate
+          </h2>
+          <p className="text-xl font-light text-foreground">
+            Join a team looking for a new member.
+          </p>
+          <Button variant="link" asChild className="text-lg p-0">
+            <Link to="/teams">Explore all teams &rarr;</Link>
+          </Button>
+        </div>
+        {Array.from({ length: 11 }).map((_, index) => (
+          <TeamCard
+          id="teamId"
+          leaderUsername="max"
+          leaderAvatarUrl="https://github.com/helious23.png"
+            positions={["React Developer", "Backend Developer", "Product Manager",]}
+            projectDescription="a new social media platform."
           />
         ))}
       </div>
