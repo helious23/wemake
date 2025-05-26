@@ -129,9 +129,10 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 11 }).map((_, index) => (
           <TeamCard
-          id="teamId"
-          leaderUsername="max"
-          leaderAvatarUrl="https://github.com/helious23.png"
+            key={index}
+            id={`teamId-${index}`}
+            leaderUsername="max"
+            leaderAvatarUrl="https://github.com/helious23.png"
             positions={["React Developer", "Backend Developer", "Product Manager",]}
             projectDescription="a new social media platform."
           />
