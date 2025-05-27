@@ -18,10 +18,10 @@ export const meta: MetaFunction = ({ params }) => {
   const month = params.month;
   const day = params.day;
   return [
-    { title: `Daily Leaderboard ${month}/${day}/${year} | wemake` },
+    { title: `Daily Leaderboard ${year}/${month}/${day} | wemake` },
     {
       name: "description",
-      content: `Product leaderboard for ${month}/${day}/${year}`,
+      content: `Product leaderboard for ${year}/${month}/${day}`,
     },
   ];
 };
@@ -31,7 +31,7 @@ export default function DailyLeaderboardPage(props: Route.ComponentProps) {
   return (
     <div>
       <h1>
-        Daily Leaderboard for {month}/{day}/{year}
+        Daily Leaderboard for {year}/{month}/{day}
       </h1>
       {/* Add your component content here */}
     </div>
