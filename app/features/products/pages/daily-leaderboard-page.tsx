@@ -1,39 +1,71 @@
-import type { MetaFunction } from "react-router";
-import type { Route } from "./+types/daily.$year.$month.$day";
+import { DateTime } from "luxon";
+import type { Route } from "./+types/daily-leaderboard-page";
+import { data, isRouteErrorResponse } from "react-router";
+import { z } from "zod";
 
-export function loader({ request, params }: Route.LoaderArgs) {
-  const year = params.year;
-  const month = params.month;
-  const day = params.day;
-  // Fetch data based on year, month, and day
-  return { year, month, day };
-}
+const paramSchema = z.object({
+  year: z.coerce.number(),
+  month: z.coerce.number(),
+  day: z.coerce.number(),
+});
 
-export function action({ request }: Route.ActionArgs) {
-  return {};
-}
+export const loader = ({ params }: Route.LoaderArgs) => {
+  const { success, data: parsedData } = paramSchema.safeParse(params);
+  if (!success) {
+    throw data(
+      {
+        error_code: "INVALID_PARAMS",
+        error_message: "유효하지 않은 파라미터입니다.",
+      },
+      { status: 400 }
+    );
+  }
 
-export const meta: MetaFunction = ({ params }) => {
-  const year = params.year;
-  const month = params.month;
-  const day = params.day;
-  return [
-    { title: `Daily Leaderboard ${year}/${month}/${day} | wemake` },
-    {
-      name: "description",
-      content: `Product leaderboard for ${year}/${month}/${day}`,
-    },
-  ];
+  const date = DateTime.fromObject(parsedData).setZone("Asia/Seoul");
+  if (!date.isValid) {
+    throw data(
+      {
+        error_code: "INVALID_DATE",
+        error_message: "유효한 날짜가 아닙니다.",
+      },
+      { status: 400 }
+    );
+  }
+  const today = DateTime.now().setZone("Asia/Seoul").startOf("day");
+  if (date > today) {
+    throw data(
+      {
+        error_code: "FUTURE_DATE",
+        error_message: "미래의 날짜입니다.",
+      },
+      { status: 400 }
+    );
+  }
+  return { date };
 };
 
-export default function DailyLeaderboardPage(props: Route.ComponentProps) {
-  const { year, month, day } = props.loaderData;
+export default function DailyLeaderboardPage({
+  loaderData,
+}: Route.ComponentProps) {
   return (
     <div>
-      <h1>
-        Daily Leaderboard for {year}/{month}/{day}
-      </h1>
+      <h1></h1>
       {/* Add your component content here */}
     </div>
   );
+}
+
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>{error.data.error_code}</h1>
+        <p>{error.data.error_message}</p>
+      </div>
+    );
+  }
+  if (error instanceof Error) {
+    return <div>{error.message}</div>;
+  }
+  return <div>Unknown error</div>;
 }
