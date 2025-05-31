@@ -8,8 +8,9 @@ export default [
             index("features/products/pages/leaderboards-page.tsx"),
             route("/yearly/:year", "features/products/pages/yearly-leaderboard-page.tsx"),
             route("/monthly/:year/:month", "features/products/pages/monthly-leaderboard-page.tsx"),
-            route("/daily/:year/:month/:day", "features/products/pages/daily-leaderboard-page.tsx"),
             route("/weekly/:year/:week", "features/products/pages/weekly-leaderboard-page.tsx"),
+            route("/daily/:year/:month/:day", "features/products/pages/daily-leaderboard-page.tsx"),
+            // 위 라우트가 아닌 경우 redirection 페이지로 이동
             route("/:period", "features/products/pages/leaderboards-redirection-page.tsx"),
         ]),
         ...prefix("categories", [

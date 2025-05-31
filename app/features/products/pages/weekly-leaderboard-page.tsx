@@ -58,6 +58,7 @@ export default function WeeklyLeaderboardPage({
   loaderData,
 }: Route.ComponentProps) {
   const urlDate = DateTime.fromObject({
+    // week 검증시 weekYear 사용, year 사용 시 error 발생
     weekYear: loaderData.year,
     weekNumber: loaderData.week,
   });
@@ -68,11 +69,15 @@ export default function WeeklyLeaderboardPage({
   return (
     <div className="space-y-5">
       <Hero
-        title={`Best of week ${urlDate
-          .startOf("week")
-          .toLocaleString(DateTime.DATE_SHORT)} - ${urlDate
-          .endOf("week")
-          .toLocaleString(DateTime.DATE_SHORT)}`}
+        title={`Best of week ${urlDate.startOf("week").toLocaleString({
+          year: "2-digit",
+          month: "2-digit",
+          day: "2-digit",
+        })} - ${urlDate.endOf("week").toLocaleString({
+          year: "2-digit",
+          month: "2-digit",
+          day: "2-digit",
+        })}`}
       />
       <div className="flex items-center justify-between max-w-screen-md mx-auto">
         <Button variant="secondary" asChild className="flex items-center gap-2">
@@ -80,7 +85,11 @@ export default function WeeklyLeaderboardPage({
             to={`/products/leaderboards/weekly/${previousWeek.weekYear}/${previousWeek.weekNumber}`}
           >
             <ChevronLeftIcon className="w-4 h-4" />
-            {previousWeek.toLocaleString(DateTime.DATE_SHORT)}
+            {previousWeek.toLocaleString({
+              year: "2-digit",
+              month: "2-digit",
+              day: "2-digit",
+            })}
           </Link>
         </Button>
         {!isToday && (
@@ -92,7 +101,11 @@ export default function WeeklyLeaderboardPage({
             <Link
               to={`/products/leaderboards/weekly/${nextWeek.weekYear}/${nextWeek.weekNumber}`}
             >
-              {nextWeek.toLocaleString(DateTime.DATE_SHORT)}
+              {nextWeek.toLocaleString({
+                year: "2-digit",
+                month: "2-digit",
+                day: "2-digit",
+              })}
               <ChevronRightIcon className="w-4 h-4" />
             </Link>
           </Button>
