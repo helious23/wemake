@@ -77,9 +77,7 @@ export default function DailyLeaderboardPage({
 
   return (
     <div className="space-y-5">
-      <Hero
-        title={`The best of ${urlDate.toLocaleString(DateTime.DATE_MED)}`}
-      />
+      <Hero title={`Best of ${urlDate.toLocaleString(DateTime.DATE_MED)}`} />
       <div className="flex items-center justify-between max-w-screen-md mx-auto">
         <Button variant="secondary" asChild className="flex items-center gap-2">
           <Link
