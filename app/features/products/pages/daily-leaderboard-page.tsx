@@ -1,7 +1,12 @@
 import { DateTime } from "luxon";
 import type { Route } from "./+types/daily-leaderboard-page";
-import { data, isRouteErrorResponse } from "react-router";
+import { data, isRouteErrorResponse, Link } from "react-router";
 import { z } from "zod";
+import { Hero } from "~/common/components/hero";
+import { ProductCard } from "../components/product-card";
+import { Button } from "~/common/components/ui/button";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import ProductPagination from "~/common/components/product-pagination";
 
 // Zod를 사용하여 파라미터를 검증합니다.
 // z.coerce.number(): 입력 값을 숫자로 변환을 시도한 후 숫자인지 검증합니다. URL 파라미터는 문자열로 들어오므로, 여기서는 문자열을 숫자로 변환합니다.
@@ -53,16 +58,66 @@ export const loader = ({ params }: Route.LoaderArgs) => {
       { status: 400 }
     );
   }
-  return { date };
+  return {
+    ...parsedData,
+  };
 };
 
 export default function DailyLeaderboardPage({
   loaderData,
 }: Route.ComponentProps) {
+  const urlDate = DateTime.fromObject({
+    year: loaderData.year,
+    month: loaderData.month,
+    day: loaderData.day,
+  });
+  const previousDay = urlDate.minus({ days: 1 });
+  const nextDay = urlDate.plus({ days: 1 });
+  const isToday = urlDate.equals(DateTime.now().startOf("day"));
+
   return (
-    <div>
-      <h1></h1>
-      {/* Add your component content here */}
+    <div className="space-y-5">
+      <Hero
+        title={`The best of ${urlDate.toLocaleString(DateTime.DATE_MED)}`}
+      />
+      <div className="flex items-center justify-between max-w-screen-md mx-auto">
+        <Button variant="secondary" asChild className="flex items-center gap-2">
+          <Link
+            to={`/products/leaderboards/daily/${previousDay.year}/${previousDay.month}/${previousDay.day}`}
+          >
+            <ChevronLeftIcon className="w-4 h-4" />
+            {previousDay.toLocaleString(DateTime.DATE_SHORT)}
+          </Link>
+        </Button>
+        {!isToday && (
+          <Button
+            variant="secondary"
+            asChild
+            className="flex items-center gap-2"
+          >
+            <Link
+              to={`/products/leaderboards/daily/${nextDay.year}/${nextDay.month}/${nextDay.day}`}
+            >
+              {nextDay.toLocaleString(DateTime.DATE_SHORT)}
+              <ChevronRightIcon className="w-4 h-4" />
+            </Link>
+          </Button>
+        )}
+      </div>
+      <div className="space-y-5 w-full max-w-screen-md mx-auto">
+        {Array.from({ length: 11 }).map((_, index) => (
+          <ProductCard
+            key={index}
+            id={`productId-${index}`}
+            name={`Product ${index}`}
+            description={`Product Description ${index}`}
+            commentCount={100}
+            viewCount={100}
+            upvoteCount={120}
+          />
+        ))}
+        <ProductPagination totalPages={10} />
+      </div>
     </div>
   );
 }
