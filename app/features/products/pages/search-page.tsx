@@ -55,18 +55,20 @@ export default function SearchPage({ loaderData }: Route.ComponentProps) {
           Search
         </Button>
       </Form>
-      {Array.from({ length: 11 }).map((_, index) => (
-        <ProductCard
-          key={index}
-          id={`productId-${index}`}
-          name={`Product ${index}`}
-          description={`Product Description ${index}`}
-          commentCount={100}
-          viewCount={100}
-          upvoteCount={120}
-        />
-      ))}
-      <ProductPagination totalPages={10} />
+      <div className="space-y-5 w-full max-w-screen-md mx-auto">
+        {Array.from({ length: 11 }).map((_, index) => (
+          <ProductCard
+            key={index}
+            id={`productId-${index}`}
+            name={`Product ${index}`}
+            description={`Product Description ${index}`}
+            commentCount={100}
+            viewCount={100}
+            upvoteCount={120}
+          />
+        ))}
+        <ProductPagination totalPages={10} />
+      </div>
     </div>
   );
 }
