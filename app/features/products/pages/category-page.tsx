@@ -1,33 +1,39 @@
-import type { MetaFunction } from "react-router";
-import type { Route } from "./+types/$category";
+import { Hero } from "~/common/components/hero";
+import { ProductCard } from "../components/product-card";
+import type { Route } from "./+types/category-page";
+import ProductPagination from "~/common/components/product-pagination";
 
-export function loader({ request, params }: Route.LoaderArgs) {
-  const category = params.category;
-  // Fetch data based on category
-  return { category };
-}
-
-export function action({ request }: Route.ActionArgs) {
-  return {};
-}
-
-export const meta: MetaFunction = ({ params }) => {
-  const category = params.category;
+export const meta: Route.MetaFunction = () => {
   return [
-    { title: `Products in ${category} | wemake` },
+    { title: `Developer Tools | wemake` },
     {
       name: "description",
-      content: `Explore products in the ${category} category`,
+      content: `Browse Developer Tools for building products faster`,
     },
   ];
 };
 
-export default function CategoryPage(props: Route.ComponentProps) {
-  const { category } = props.loaderData;
+export default function CategoryPage() {
   return (
-    <div>
-      <h1>Products in {category}</h1>
-      {/* Add your component content here */}
+    <div className="space-y-5">
+      <Hero
+        title="Developer Tools"
+        subtitle="Tools for developers to build products faster"
+      />
+      <div className="space-y-5 w-full max-w-screen-md mx-auto">
+        {Array.from({ length: 11 }).map((_, index) => (
+          <ProductCard
+            key={index}
+            id={`productId-${index}`}
+            name={`Product ${index}`}
+            description={`Product Description ${index}`}
+            commentCount={100}
+            viewCount={100}
+            upvoteCount={120}
+          />
+        ))}
+        <ProductPagination totalPages={10} />
+      </div>
     </div>
   );
 }

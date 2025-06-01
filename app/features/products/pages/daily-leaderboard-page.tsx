@@ -16,6 +16,25 @@ const paramSchema = z.object({
   day: z.coerce.number(),
 });
 
+export const meta: Route.MetaFunction = ({ params }) => {
+  const date = DateTime.fromObject({
+    year: Number(params.year),
+    month: Number(params.month),
+    day: Number(params.day),
+  })
+    .setZone("Asia/Seoul")
+    .setLocale("ko");
+  return [
+    {
+      title: `Best of ${date.toLocaleString(DateTime.DATE_MED)} | wemake`,
+    },
+    {
+      name: "description",
+      content: `Best of ${date.toLocaleString(DateTime.DATE_MED)}`,
+    },
+  ];
+};
+
 export const loader = ({ params }: Route.LoaderArgs) => {
   // paramSchema.safeParse(params) 는 파라미터를 검증하고, 검증 결과를 반환합니다.
   // 검증 결과는 { success: boolean, data: T | undefined } 형태로 반환됩니다.

@@ -1,26 +1,35 @@
-import type { MetaFunction } from "react-router";
-import type { Route } from "./+types/categories";
+import { Hero } from "~/common/components/hero";
+import { CategoryCard } from "~/features/products/components/category-card";
+import type { Route } from "./+types/categories-page";
 
-export function loader({ request }: Route.LoaderArgs) {
-  return {};
-}
-
-export function action({ request }: Route.ActionArgs) {
-  return {};
-}
-
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = ({ params }) => {
   return [
-    { title: "Categories | wemake" },
-    { name: "description", content: "Product categories" },
+    { title: `Categories | wemake` },
+    {
+      name: "description",
+      content: `Explore products in the categories`,
+    },
   ];
 };
 
-export default function CategoriesPage(props: Route.ComponentProps) {
+export const loader = ({ params }: Route.LoaderArgs) => {
+  return { category: params.category };
+};
+
+export default function CategoryPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div>
-      <h1>Categories Page</h1>
-      {/* Add your component content here */}
+    <div className="space-y-5">
+      <Hero title={`Categories`} subtitle="Explore products in the category" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
+        {Array.from({ length: 11 }).map((_, index) => (
+          <CategoryCard
+            key={index}
+            id={`categoryId-${index}`}
+            name={`Category ${index}`}
+            description={`Category Description ${index}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
