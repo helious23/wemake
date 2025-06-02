@@ -18,9 +18,9 @@ export const loader = ({ params }: Route.LoaderArgs) => {
 
 export default function CategoryPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="space-y-5">
+    <div className="space-y-20">
       <Hero title={`Categories`} subtitle="Explore products in the category" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {Array.from({ length: 11 }).map((_, index) => (
           <CategoryCard
             key={index}

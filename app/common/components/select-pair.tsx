@@ -23,6 +23,7 @@ export default function SelectPair({
   placeholder: string;
   options: { label: string; value: string }[];
 }) {
+  // label 클릭 시 shadcn의 Select 에 open 전달 -> select 창 열림
   const [open, setOpen] = useState(false);
   return (
     <div className="space-y-2">
