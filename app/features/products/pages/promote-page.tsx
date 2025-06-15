@@ -25,7 +25,7 @@ export default function PromotePage() {
     // from 과 to 가 둘 다 선택되었는지 확인
     promotionPeriod?.from && promotionPeriod?.to
       ? DateTime.fromJSDate(promotionPeriod.to).diff(
-          // Luxon date로 변환하여 날짜 차이 계산
+          // JS Date를 Luxon date로 변환하여 날짜 차이 계산
           DateTime.fromJSDate(promotionPeriod.from),
           "days"
         ).days
